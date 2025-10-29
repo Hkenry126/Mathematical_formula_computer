@@ -1,9 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>數學公式計算器</title> 
-    </head>
-    <body>
-    </body>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>數學公式計算器</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <h2>二次方程式解公式</h2>
+  <p>$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+
+  <label>a: <input type="number" id="a"></label>
+  <label>b: <input type="number" id="b"></label>
+  <label>c: <input type="number" id="c"></label>
+  <button onclick="calc()">計算</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calc() {
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const c = parseFloat(document.getElementById("c").value);
+
+      const d = b*b - 4*a*c;
+      if (d < 0) {
+        document.getElementById("result").innerText = "沒有實數解";
+      } else {
+        const x1 = (-b + Math.sqrt(d)) / (2*a);
+        const x2 = (-b - Math.sqrt(d)) / (2*a);
+        document.getElementById("result").innerText = `x₁ = ${x1}, x₂ = ${x2}`;
+      }
+    }
+  </script>
+</body>
 </html>
+
